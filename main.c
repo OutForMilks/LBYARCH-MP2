@@ -8,7 +8,7 @@ int main() { // take in inputs here
 
     for (int i = 0 ; i < rows ; i++) { // loop through rows
         for (int j = 0 ; j < columns ; j++) { // loop through columns per row
-            scanf("%lf", imgData[i][j]); // put the input in its respective spot in the array
+            scanf("%lf", &imgData[i][j]); // put the input in its respective spot in the array
         }
     }
 
