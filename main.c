@@ -1,12 +1,14 @@
 #include <stdio.h>
 
+extern void imgCvtGrayDoubleToInt(double* input, double* output, int size);
+
 int main() {
     // take in inputs here
     int rows, columns; // size of matrix
     scanf("%d %d", &rows, &columns); // user input (first line)
 
     double imgData[rows][columns]; // store the image pixel data
-    int convertedOutput[rows][columns]; // converted output
+    double convertedOutput[rows][columns]; // converted output. FIXME: change to int datatype; temporarily changed to double for testing
 
     for (int i = 0 ; i < rows ; i++) { // loop through rows
         for (int j = 0 ; j < columns ; j++) { // loop through columns per row
@@ -14,12 +16,14 @@ int main() {
         }
     }
 
-    // assembly function call here.
+    int size = rows * columns; // FIXME: size of entire array. might need rows and columns individually for actual project
+
+    imgCvtGrayDoubleToInt(&imgData[0][0], &convertedOutput[0][0], size); // assembly call here
 
     // print output here
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            printf("%d ", convertedOutput[i][j]);
+            printf("%lf ", convertedOutput[i][j]); // FIXME: change to %d for actual project
         }
         printf("\n");
     }
