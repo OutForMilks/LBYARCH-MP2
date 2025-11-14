@@ -13,6 +13,11 @@ int main() {
     for (int i = 0 ; i < rows ; i++) { // loop through rows
         for (int j = 0 ; j < columns ; j++) { // loop through columns per row
             scanf("%lf", &imgData[i][j]); // put the input in its respective spot in the array
+
+            if (imgData[i][j] < 0 || imgData[i][j] > 1) { // input validity checking
+                printf("Array has an invalid input. Inputs must be between 0 and 1.");
+                return 0;
+            }
         }
     }
 
