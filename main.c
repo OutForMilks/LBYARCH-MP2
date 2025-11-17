@@ -11,7 +11,7 @@ int main() {
     scanf("%d", &columns);
 
     double imgData[rows][columns]; // store the image pixel data
-    int convertedOutput[rows][columns]; // converted output. FIXME: change to int datatype; temporarily changed to double for testing
+    int convertedOutput[rows][columns]; 
 
     for (int i = 0 ; i < rows ; i++) { // loop through rows
         for (int j = 0 ; j < columns ; j++) { // loop through columns per row
@@ -25,19 +25,20 @@ int main() {
         }
     }
 
-    int size = rows * columns; // FIXME: size of entire array. might need rows and columns individually for actual project
+    int size = rows * columns;
 
     imgCvtGrayDoubleToInt(&imgData[0][0], &convertedOutput[0][0], size, 255); // assembly call here
 
     // print output here
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            printf("%d ", convertedOutput[i][j]); // FIXME: change to %d for actual project
+            printf("%d ", convertedOutput[i][j]);
         }
         printf("\n");
     }
     int wait;
-    scanf("%s", &wait);
+    printf("\nEnter 1 to end: ");
+    scanf("%d", &wait);
 	
     return 0;
 }
