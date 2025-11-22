@@ -10,9 +10,8 @@
     @params input: pointer to the first element of a 2D array of doubles representing grayscale pixel values (0.0 to 1.0)
     @params output: pointer to the first element of a 2D array of integers to store converted pixel values (0 to 255)
     @params size: total number of elements in the image (rows * columns)
-    @params _255: integer value 255 used for scaling
 */ 
-extern void imgCvtGrayDoubleToInt(double* input, int* output, int size, int _255);
+extern void imgCvtGrayDoubleToInt(double* input, int* output, int size);
 
 
 /*  C version of the image conversion function
@@ -20,12 +19,11 @@ extern void imgCvtGrayDoubleToInt(double* input, int* output, int size, int _255
     @params col: number of columns in the image
     @params input: 2D array of doubles representing grayscale pixel values (0.0 to 1.0)
     @params output: 2D array of integers to store converted pixel values (0 to 255)
-    @params _255: integer value 255 used for scaling
 */
-void c_vimgCvtGrayDoubleToInt(int row, int col, double input[row][col], int output[row][col], int _255){
+void c_vimgCvtGrayDoubleToInt(int row, int col, double input[row][col], int output[row][col]){
     for (int i = 0 ; i < row ; i++) {
         for (int j = 0 ; j < col ; j++) {
-            output[i][j] = (int)(input[i][j] * _255 + 0.5); // Added rounding
+            output[i][j] = (int)(input[i][j] * 255 + 0.5); // Added rounding
         }
     }
 }
@@ -90,7 +88,7 @@ void performance_comparison_test(int rows, int columns){
 
     for (int i = 0; i < RUNS; i++) {
         clock_t start = clock();
-        imgCvtGrayDoubleToInt(&imgData[0][0], &asmOutput[0][0], rows * columns, 255);
+        imgCvtGrayDoubleToInt(&imgData[0][0], &asmOutput[0][0], rows * columns);
         clock_t end = clock();
         total_time += (double)(end - start) / CLOCKS_PER_SEC;
     }
@@ -98,7 +96,7 @@ void performance_comparison_test(int rows, int columns){
     double avg_time = total_time / RUNS;
 
     /* Correctness check */
-    c_vimgCvtGrayDoubleToInt(rows, columns, imgData, cOutput, 255);
+    c_vimgCvtGrayDoubleToInt(rows, columns, imgData, cOutput);
     bool pass = output_comparison_test(rows, columns, asmOutput, cOutput);
 
     printf("Average ASM Time (30 runs): %f seconds\n", avg_time);
