@@ -6,7 +6,8 @@
 - **Language / tools:** C (GCC), x86-64 assembly (NASM), Windows build instructions shown (object `.obj` linking).
 
 **Files:**
-- `main.c`: C driver that generates data, times the assembly function, runs correctness checks, and prints results.
+- `main.c`: C driver that takes inputs then prints the outputs from the ASM function.
+- `performance_tests.c`: C driver that generates data, times the assembly function, runs correctness checks, and prints results.
 - `imgCvtGrayDoubleToInt.asm`: Assembly implementation of the conversion function using scalar SIMD (XMM) floating-point instructions.
 - `imgCvtGrayDoubleToInt.obj`: Assembled object (not included here — build with NASM).
 
@@ -17,9 +18,15 @@ nasm -f win64 imgCvtGrayDoubleToInt.asm -o imgCvtGrayDoubleToInt.obj
 ```
 - Compile & link with GCC:
 ```powershell
-gcc main.c imgCvtGrayDoubleToInt.obj -o test.exe
+gcc main.c imgCvtGrayDoubleToInt.obj -o main.exe
 ```
+
+- For performance tests:
+```
+gcc performance_tests.c imgCvtGrayDoubleToInt.obj -o tests.exe
+```
+
 - Run the executable:
 ```powershell
-.\test.exe
+.\main.exe
 ```
