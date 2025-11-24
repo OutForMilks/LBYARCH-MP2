@@ -1,5 +1,5 @@
 # LBYARCH-MP2
-**Lab Group 4**
+***Lab Group 4***
 - Borja, Stephen
 - Ching, Justin
 
