@@ -1,4 +1,7 @@
 # LBYARCH-MP2
+**Lab Group 4**
+Borja, Stephen
+Ching, Justin
 
 **Overview:**
 - **Project:** x86-64 assembly <-> C interface to convert a grayscale image represented as doubles (0.0–1.0) into 8-bit integers (0–255).
